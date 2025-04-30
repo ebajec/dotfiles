@@ -5,8 +5,14 @@ dnf install\
 	nvim\
 	alacritty\
 	tmux\
-	
 
-git clone git@github.com:ebajec/nvim-config.git ./nvim/.config/nvim
+bash ./scripts/nvim-setup.sh
+bash ./scripts/tmux-setup.sh
 
-stow
+stow\
+	-t $HOME\
+	home\
+	alacritty\
+	nvim\
+	tmux\
+	zsh\
