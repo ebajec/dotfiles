@@ -10,6 +10,7 @@ bash ./scripts/nvim-setup.sh
 bash ./scripts/tmux-setup.sh
 
 stow\
+	--adopt\
 	-t $HOME\
 	home\
 	alacritty\
