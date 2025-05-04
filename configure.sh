@@ -1,13 +1,8 @@
 #!/usr/bin/bash
 
-dnf install\
-	stow\
-	nvim\
-	alacritty\
-	tmux\
-
 bash ./scripts/nvim-setup.sh
 bash ./scripts/tmux-setup.sh
+bash ./scripts/zsh-setup.sh
 
 stow\
 	--adopt\
