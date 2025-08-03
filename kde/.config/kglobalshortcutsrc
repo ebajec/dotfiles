@@ -1,5 +1,6 @@
 [ActivityManager]
 _k_friendly_name=Activity Manager
+switch-to-activity-32f76368-2a92-4a91-840b-52f508f04d96=none,none,Switch to activity "Default"
 switch-to-activity-9f03469d-d60e-4dea-90a1-da1e1e6043fe=none,none,Switch to activity "Default"
 
 [KDE Keyboard Layout Switcher]
@@ -233,8 +234,8 @@ activate task manager entry 6=Meta+6,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=Meta+7,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=Meta+8,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=Meta+9,Meta+9,Activate Task Manager Entry 9
-activate widget 28=,none,Activate Window List Widget
-activate widget 32=,none,Activate Digital Clock Widget
+activate widget 28=none,none,Activate Window List Widget
+activate widget 32=none,none,Activate Digital Clock Widget
 clear-history=none,,Clear Clipboard History
 clipboard_action=Meta+Ctrl+X,Meta+Ctrl+X,Automatic Action Popup Menu
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels
