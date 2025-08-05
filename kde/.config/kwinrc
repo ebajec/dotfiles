@@ -1,12 +1,13 @@
 [Activities][LastVirtualDesktop]
-32f76368-2a92-4a91-840b-52f508f04d96=defefb08-4870-44ff-ba15-b9984349fa71
+32f76368-2a92-4a91-840b-52f508f04d96=51d804b0-9574-4a2f-8e99-30172504d1e1
 9f03469d-d60e-4dea-90a1-da1e1e6043fe=defefb08-4870-44ff-ba15-b9984349fa71
 
 [Desktops]
 Id_1=defefb08-4870-44ff-ba15-b9984349fa71
 Id_2=51d804b0-9574-4a2f-8e99-30172504d1e1
 Id_3=69cd4c77-1c5b-4607-99e2-eb9bc3c2a912
-Number=3
+Id_4=836416d1-b41a-499d-8236-a6bb3a348ca3
+Number=4
 Rows=1
 
 [NightColor]
@@ -45,6 +46,15 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][717d5a6c-021d-4299-a8aa-efbbd469996a][4ccd33af-df3e-46b9-a957-61fc7566f059]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][836416d1-b41a-499d-8236-a6bb3a348ca3][0a614242-451e-4c53-97ce-21a517746a40]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][836416d1-b41a-499d-8236-a6bb3a348ca3][b11c6ef8-0fe3-437d-ae5f-6eaf74ac5659]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][836416d1-b41a-499d-8236-a6bb3a348ca3][b24b9478-74b9-4123-93f5-c9855b3ae01f]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][84404ac6-6bf7-463a-971f-22a23a906396][4ccd33af-df3e-46b9-a957-61fc7566f059]
