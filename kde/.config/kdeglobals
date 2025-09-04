@@ -139,7 +139,7 @@ Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x8c\
 
 [General]
 AccentColor=27,29,43
-ColorSchemeHash=af86445281ed4137a322f38c1f3a33b0a08b34b2
+ColorSchemeHash=a2ad51ec9ad4051b0637a3e007122d1c200179aa
 LastUsedCustomAccentColor=27,29,43
 TerminalApplication=alacritty
 
