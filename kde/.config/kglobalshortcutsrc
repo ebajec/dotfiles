@@ -24,14 +24,14 @@ mic_mute=Microphone Mute\tMeta+Volume Mute,Microphone Mute\tMeta+Volume Mute,Mut
 mute=Volume Mute,Volume Mute,Mute
 
 [ksmserver]
-Halt Without Confirmation=none,none,Shut Down Without Confirmation
+Halt Without Confirmation=none,,Shut Down Without Confirmation
 Lock Session=Meta+L\tScreensaver,Meta+L\tScreensaver,Lock Session
 Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Show Logout Screen
-Log Out Without Confirmation=none,none,Log Out Without Confirmation
-LogOut=none,none,Log Out
-Reboot=none,none,Reboot
-Reboot Without Confirmation=none,none,Reboot Without Confirmation
-Shut Down=none,none,Shut Down
+Log Out Without Confirmation=none,,Log Out Without Confirmation
+LogOut=none,,Log Out
+Reboot=none,,Reboot
+Reboot Without Confirmation=none,,Reboot Without Confirmation
+Shut Down=none,,Shut Down
 _k_friendly_name=Session Management
 
 [kwin]
@@ -138,7 +138,7 @@ Window One Screen Down=none,,Move Window One Screen Down
 Window One Screen Up=none,,Move Window One Screen Up
 Window One Screen to the Left=none,,Move Window One Screen to the Left
 Window One Screen to the Right=none,,Move Window One Screen to the Right
-Window Operations Menu=Alt+F3,Alt+F3,Window Operations Menu
+Window Operations Menu=Alt+F3,Alt+F3,Window Menu
 Window Pack Down=none,,Move Window Down
 Window Pack Left=none,,Move Window Left
 Window Pack Right=none,,Move Window Right
@@ -153,7 +153,7 @@ Window Quick Tile Top Left=none,,Quick Tile Window to the Top Left
 Window Quick Tile Top Right=none,,Quick Tile Window to the Top Right
 Window Raise=none,,Raise Window
 Window Resize=none,,Resize Window
-Window Shade=none,,Shade Window
+Window Shade=none,none,Shade Window
 Window Shrink Horizontal=none,,Shrink Window Horizontally
 Window Shrink Vertical=none,,Shrink Window Vertically
 Window to Desktop 1=none,,Window to Desktop 1
@@ -196,11 +196,11 @@ view_zoom_out=Meta+-,Meta+-,Zoom Out
 
 [mediacontrol]
 _k_friendly_name=Media Controller
-mediavolumedown=none,none,Media volume down
-mediavolumeup=none,none,Media volume up
+mediavolumedown=none,,Media volume down
+mediavolumeup=none,,Media volume up
 nextmedia=Media Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
-playmedia=none,none,Play media playback
+playmedia=none,,Play media playback
 playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
@@ -215,13 +215,14 @@ Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Increase 
 Increase Screen Brightness Small=Shift+Monitor Brightness Up,Shift+Monitor Brightness Up,Increase Screen Brightness by 1%
 PowerDown=Power Down,Power Down,Power Down
 PowerOff=Power Off,Power Off,Power Off
-Sleep=Sleep,Sleep,Suspend
+Sleep=Sleep\tCtrl+Shift+Esc,Sleep,Suspend
 Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Toggle Keyboard Backlight
 Turn Off Screen=none,none,Turn Off Screen
 _k_friendly_name=Power Management
 powerProfile=Battery\tMeta+B,Battery\tMeta+B,Switch Power Profile
 
 [plasmashell]
+Slideshow Wallpaper Next Image=none,,Next Wallpaper Image
 _k_friendly_name=plasmashell
 activate application launcher=Meta,Meta\tAlt+F1,Activate Application Launcher
 activate task manager entry 1=Meta+1,Meta+1,Activate Task Manager Entry 1
@@ -249,7 +250,6 @@ repeat_action=none,,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
 show-barcode=none,,Show Barcode…
 show-on-mouse-pos=Meta+V,Meta+V,Show Clipboard Items at Mouse Position
-stop current activity=Meta+S,Meta+S,Stop Current Activity
 switch to next activity=none,,Switch to Next Activity
 switch to previous activity=none,,Switch to Previous Activity
 toggle do not disturb=none,,Toggle do not disturb

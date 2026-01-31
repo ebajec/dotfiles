@@ -4,7 +4,7 @@ PreviewSize=22
 [ExtractDialog]
 1671x1114 screen: Height=557
 1671x1114 screen: Width=1114
-DirHistory[$e]=$HOME/git/engine/src/samples/boxes/
+DirHistory[$e]=$HOME/qu-autodrive/,$HOME/git/engine/src/samples/boxes/
 
 [General]
 Version=202
