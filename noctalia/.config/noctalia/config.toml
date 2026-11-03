@@ -1,0 +1,15 @@
+# Noctalia shell config (shared across machines).
+#
+# Noctalia merges every *.toml in ~/.config/noctalia/ alphabetically, then
+# applies GUI changes from ~/.local/state/noctalia/settings.toml on top.
+# Put machine-specific overrides (monitor names, etc.) in an untracked
+# file such as ~/.config/noctalia/zz-local.toml.
+#
+# See the merged result with:  noctalia config export full
+# Validate with:               noctalia config validate
+
+[theme]
+builtin = "Tokyo-Night"
+
+[wallpaper.default]
+path = "/home/ebajec/Pictures/fractal-2.jpg"

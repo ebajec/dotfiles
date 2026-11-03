@@ -33,6 +33,8 @@ else
 		-t $HOME\
 		home\
 		alacritty\
+		hyprland\
+		noctalia\
 		nvim\
 		tmux\
 		zsh
