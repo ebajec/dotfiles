@@ -117,3 +117,5 @@ source $ZSH/oh-my-zsh.sh
 
 ###############################################################################
 source ~/.env
+
+alias superluminal='QT_QPA_PLATFORM=xcb /opt/superluminal/Superluminal'

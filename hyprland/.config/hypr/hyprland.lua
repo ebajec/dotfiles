@@ -23,12 +23,73 @@
 ------------------
 
 -- See https://wiki.hypr.land/configuring/core/monitors/
+
+-- Fallback for any monitor without its own rule
 hl.monitor({
     output   = "",
     mode     = "preferred",
     position = "auto",
     scale    = 1,
 })
+
+-- Desk setup (matches the KDE layout): MSI on the left, ASUS on the right,
+-- laptop screen off while both are connected.
+-- Matched by description so it works whichever DP-* port/dock they land on.
+local deskLeft  = "Microstep MSI MAG241C 0x000002ED"
+local deskRight = "ASUSTek COMPUTER INC XG27ACS SCLMTF108638"
+
+hl.monitor({
+    output   = "desc:" .. deskLeft,
+    mode     = "1920x1080@144",
+    position = "0x270",
+    scale    = 1,
+})
+
+hl.monitor({
+    output   = "desc:" .. deskRight,
+    mode     = "2560x1440@143.97",
+    position = "1920x0",
+    scale    = 1,
+    vrr      = 1,
+})
+
+-- `ignore` is a monitor (or name) to treat as gone, in case it is still
+-- listed when the monitor.removed event fires.
+local function deskConnected(ignore)
+    local ignoreName
+    if type(ignore) == "string" then
+        ignoreName = ignore
+    elseif ignore ~= nil then
+        local ok, name = pcall(function() return ignore.name end)
+        if ok then ignoreName = name end
+    end
+
+    local seen = {}
+    for _, m in ipairs(hl.get_monitors()) do
+        if m.name ~= ignoreName then
+            seen[m.description] = true
+        end
+    end
+    return seen[deskLeft] and seen[deskRight]
+end
+
+local function applyLaptopScreen(ignore)
+    if deskConnected(ignore) then
+        hl.monitor({ output = "eDP-1", disabled = true })
+    else
+        hl.monitor({ output = "eDP-1", mode = "preferred", position = "auto", scale = 1 })
+    end
+end
+
+applyLaptopScreen()
+hl.on("monitor.added",   function() applyLaptopScreen() end)
+hl.on("monitor.removed", function(m)
+    applyLaptopScreen(m)
+    -- On undock both desk monitors vanish at once, so the check above can
+    -- still see the other one and leave eDP-1 off (black screen on resume).
+    -- Re-check once the hotplug has settled.
+    hl.timer(function() applyLaptopScreen() end, { timeout = 1000, type = "oneshot" })
+end)
 
 
 ---------------------
@@ -50,15 +111,12 @@ local menu        = noctalia .. "panel-toggle launcher"
 
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
---
-hl.on("hyprland.start", function ()
-	hl.exec_cmd("noctalia")
-  --hl.exec_cmd("systemctl --user start hyprpolkitagent")
-  --hl.exec_cmd(terminal)
-  --hl.exec_cmd("nm-applet")
-  --hl.exec_cmd("waybar & hyprpaper & firefox")
-end)
 
+hl.on("hyprland.start", function ()
+	hl.exec_cmd("systemctl --user start hyprpolkitagent")
+	hl.exec_cmd("ksecretd")  -- KWallet Secret Service (keyring for Noctalia's Google calendar, etc.)
+	hl.exec_cmd("noctalia")
+end)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -251,7 +309,8 @@ hl.config({
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
         touchpad = {
-            natural_scroll = false,
+            natural_scroll = true,
+            disable_while_typing = false,
         },
     },
 })
@@ -290,10 +349,17 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + N", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + B", hl.dsp.layout("swapsplit"))    -- dwindle only
 
+-- Fullscreen
+hl.bind(mainMod .. " + F",         hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))  -- whole monitor
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized",  action = "toggle" }))  -- keep bar + gaps
+hl.bind(mainMod .. " + CTRL + F",  hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "toggle" }))  -- fake: app thinks it's fullscreen, stays tiled
+
 -- Noctalia shell
 hl.bind(mainMod .. " + comma",  hl.dsp.exec_cmd(noctalia .. "settings-toggle"))
 hl.bind(mainMod .. " + D",      hl.dsp.exec_cmd(noctalia .. "panel-toggle control-center"))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd(noctalia .. "session lock"))
+-- Recovery for a black screen after undocking: reload re-runs applyLaptopScreen()
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprctl reload"), { locked = true })
 hl.bind("ALT + Tab",            hl.dsp.exec_cmd(noctalia .. "window-switcher hold"))
 hl.bind("ALT + SHIFT + Tab",    hl.dsp.exec_cmd(noctalia .. "window-switcher hold reverse"))
 
@@ -309,6 +375,12 @@ hl.bind(mainMod .. " + H",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J",  hl.dsp.focus({ direction = "down" }))
+
+-- Swap the focused window with its neighbour with mainMod + SHIFT + hjkl
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -414,3 +486,7 @@ hl.window_rule({
     float = true,
 })
 
+
+
+-- For Noctalia Color templates
+require("noctalia").apply_theme()
